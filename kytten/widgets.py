@@ -14,7 +14,8 @@
 
 import pyglet
 from pyglet import gl
-from override import KyttenLabel
+from .override import KyttenLabel
+
 
 class Widget:
     """
@@ -29,6 +30,7 @@ class Widget:
     for the first time, they initialize any requisite graphic elements
     that could not be done at creation time.
     """
+
     def __init__(self, width=0, height=0):
         """
         Creates a new Widget.
@@ -76,8 +78,8 @@ class Widget:
         @param y Y coordinate of point
         @returns True if the point is within our area
         """
-        return x >= self.x and x < self.x + self.width and \
-               y >= self.y and y < self.y + self.height
+        return self.x <= x < self.x + self.width and \
+               self.y <= y < self.y + self.height
 
     def is_expandable(self):
         """
@@ -124,6 +126,7 @@ class Widget:
         self.delete()
         self.saved_dialog = None
 
+
 class Control(Widget, pyglet.event.EventDispatcher):
     """
     Controls are widgets which can accept events.
@@ -132,6 +135,7 @@ class Control(Widget, pyglet.event.EventDispatcher):
     then dispatch events to whichever control is currently the focus of
     the user's attention.
     """
+
     def __init__(self, id=None, value=None, width=0, height=0, disabled=False):
         """
         Creates a new Control.
@@ -156,8 +160,8 @@ class Control(Widget, pyglet.event.EventDispatcher):
         self.focus_flag = False
 
     def _get_controls(self):
-        return [(self, self.x, self.x + self.width,    # control, left, right,
-                       self.y + self.height, self.y)]  # top, bottom
+        return [(self, self.x, self.x + self.width,  # control, left, right,
+                 self.y + self.height, self.y)]  # top, bottom
 
     def disable(self):
         self.disabled_flag = True
@@ -195,6 +199,7 @@ class Control(Widget, pyglet.event.EventDispatcher):
     def on_lose_highlight(self):
         self.highlight_flag = False
 
+
 # Controls can potentially accept most of the events defined for the window,
 # but in practice we'll only pass selected events from Dialog.  This avoids
 # a large number of unsightly empty method declarations.
@@ -207,11 +212,13 @@ Control.register_event_type('on_lose_focus')
 Control.register_event_type('on_lose_highlight')
 Control.register_event_type('on_update')
 
+
 class Spacer(Widget):
     """
     A Spacer is an empty widget that expands to fill space in layouts.
     Use Widget if you need a fixed-sized spacer.
     """
+
     def __init__(self, width=0, height=0):
         """
         Creates a new Spacer.  The width and height given are the minimum
@@ -245,14 +252,16 @@ class Spacer(Widget):
         Widget.size(self, dialog)
         self.width, self.height = self.min_width, self.min_height
 
+
 class Graphic(Widget):
     """
     Lays out a graphic from the theme, i.e. part of a title bar.
     """
+
     def __init__(self, path, is_expandable=False):
         Widget.__init__(self)
         self.path = path
-        self.expandable=is_expandable
+        self.expandable = is_expandable
         self.graphic = None
         self.min_width = self.min_height = 0
 
@@ -287,8 +296,10 @@ class Graphic(Widget):
             self.min_height = self.graphic.height
         self.width, self.height = self.min_width, self.min_height
 
+
 class Label(Widget):
     """A wrapper around a simple text label."""
+
     def __init__(self, text="", bold=False, italic=False,
                  font_name=None, font_size=None, color=None, path=[]):
         Widget.__init__(self)
@@ -326,7 +337,7 @@ class Label(Widget):
             self.label = KyttenLabel(
                 self.text, bold=self.bold, italic=self.italic,
                 color=self.color or
-                    dialog.theme[self.path + ['gui_color']],
+                      dialog.theme[self.path + ['gui_color']],
                 font_name=self.font_name or
                           dialog.theme[self.path + ['font']],
                 font_size=self.font_size or
@@ -335,4 +346,3 @@ class Label(Widget):
             font = self.label.document.get_font()
             self.width = self.label.content_width
             self.height = font.ascent - font.descent  # descent is negative
-

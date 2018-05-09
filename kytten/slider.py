@@ -4,6 +4,7 @@
 import pyglet
 from widgets import Control
 
+
 class Slider(Control):
     """
     A horizontal slider.  Position is measured from 0.0 to 1.0.

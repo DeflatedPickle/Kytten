@@ -2,13 +2,15 @@
 # Copyrighted (C) 2009 by Conrad "Lynx" Wong
 
 import pyglet
-from widgets import Control
-from override import KyttenLabel
+from .widgets import Control
+from .override import KyttenLabel
+
 
 class Button(Control):
     """
     A simple text-labeled button.
     """
+
     def __init__(self, text="", id=None, on_click=None, disabled=False):
         """
         Creates a new Button.  The provided text will be used to caption the
@@ -54,8 +56,8 @@ class Button(Control):
             self.highlight.update(self.x, self.y, self.width, self.height)
         x, y, width, height = self.button.get_content_region()
         font = self.label.document.get_font()
-        self.label.x = x + width/2 - self.label.content_width/2
-        self.label.y = y + height/2 - font.ascent/2 - font.descent
+        self.label.x = x + width / 2 - self.label.content_width / 2
+        self.label.y = y + height / 2 - font.ascent / 2 - font.descent
 
     def on_gain_highlight(self):
         Control.on_gain_highlight(self)
@@ -114,20 +116,20 @@ class Button(Control):
                 color,
                 dialog.batch, dialog.bg_group)
         if self.highlight is None and self.is_highlight():
-            self.highlight = dialog.theme[path]['highlight']['image'].\
+            self.highlight = dialog.theme[path]['highlight']['image']. \
                 generate(dialog.theme[path]['highlight_color'],
                          dialog.batch,
                          dialog.bg_group)
         if self.label is None:
             self.label = KyttenLabel(self.text,
-                font_name=dialog.theme[path]['font'],
-                font_size=dialog.theme[path]['font_size'],
-                color=dialog.theme[path]['text_color'],
-                batch=dialog.batch, group=dialog.fg_group)
+                                     font_name=dialog.theme[path]['font'],
+                                     font_size=dialog.theme[path]['font_size'],
+                                     color=dialog.theme[path]['text_color'],
+                                     batch=dialog.batch, group=dialog.fg_group)
 
         # Treat the height of the label as ascent + descent
         font = self.label.document.get_font()
-        height = font.ascent - font.descent # descent is negative
+        height = font.ascent - font.descent  # descent is negative
         self.width, self.height = self.button.get_needed_size(
             self.label.content_width, height)
 

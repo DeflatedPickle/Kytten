@@ -6,15 +6,16 @@ import os
 import pyglet
 from pyglet import gl
 
-from button import Button
-from dialog import Dialog
-from frame import Frame, SectionHeader
-from layout import VerticalLayout, HorizontalLayout
-from layout import ANCHOR_CENTER, HALIGN_LEFT, VALIGN_BOTTOM
-from menu import Menu, Dropdown
-from scrollable import Scrollable
-from text_input import Input
-from widgets import Label
+from .button import Button
+from .dialog import Dialog
+from .frame import Frame, SectionHeader
+from .layout import VerticalLayout, HorizontalLayout
+from .layout import ANCHOR_CENTER, HALIGN_LEFT, VALIGN_BOTTOM
+from .menu import Menu, Dropdown
+from .scrollable import Scrollable
+from .text_input import Input
+from .widgets import Label
+
 
 class FileLoadDialog(Dialog):
     def __init__(self, path=os.getcwd(), extensions=[], title="Select File",
@@ -115,6 +116,7 @@ class FileLoadDialog(Dialog):
                 return 1
             else:
                 return cmp(x, y)
+
         self.files.sort(dir_sort)
 
     def get(self):
@@ -127,6 +129,7 @@ class FileLoadDialog(Dialog):
         self.on_select = None
         Dialog.teardown(self)
 
+
 class FileSaveDialog(FileLoadDialog):
     def __init__(self, *args, **kwargs):
         self.text_input = Input()
@@ -134,10 +137,12 @@ class FileSaveDialog(FileLoadDialog):
         # Set up buttons to be shown in our contents
         def on_save():
             self._do_select()
+
         self.save_button = Button("Save", on_click=on_save)
 
         def on_cancel():
             self._do_cancel()
+
         self.cancel_button = Button("Cancel", on_click=on_cancel)
 
         FileLoadDialog.__init__(self, *args, **kwargs)
@@ -145,11 +150,14 @@ class FileSaveDialog(FileLoadDialog):
         # Setup our event handlers
         def on_enter(dialog):
             self._do_select()
+
         self.on_enter = on_enter
 
         self.real_on_select = self.on_select
+
         def on_select(filename):
             self.text_input.set_text(filename)
+
         self.on_select = on_select
 
     def _do_cancel(self):
@@ -185,6 +193,7 @@ class FileSaveDialog(FileLoadDialog):
             ], align=HALIGN_LEFT)
         )
 
+
 class DirectorySelectDialog(FileLoadDialog):
     def __init__(self, *args, **kwargs):
         self.text_input = Input()
@@ -192,10 +201,12 @@ class DirectorySelectDialog(FileLoadDialog):
         # Set up buttons to be shown in our contents
         def on_select_button():
             self._do_select()
+
         self.select_button = Button("Select", on_click=on_select_button)
 
         def on_cancel_button():
             self._do_cancel()
+
         self.cancel_button = Button("Cancel", on_click=on_cancel_button)
 
         FileLoadDialog.__init__(self, *args, **kwargs)
@@ -203,16 +214,20 @@ class DirectorySelectDialog(FileLoadDialog):
         # Setup our event handlers
         def on_enter(dialog):
             self._do_select()
+
         self.on_enter = on_enter
 
         self.real_on_select = self.on_select
+
         def on_select(filename):
             self.text_input.set_text(filename)
+
         self.on_select = on_select
 
         def on_parent_menu_select(choice):
             self.text_input.set_text(self.parents_dict[choice])
             self._do_open()
+
         self.dropdown.on_select = on_parent_menu_select
 
     def _do_cancel(self):
@@ -320,4 +335,5 @@ class DirectorySelectDialog(FileLoadDialog):
                 return 1
             else:
                 return cmp(x, y)
+
         self.files.sort(dir_sort)

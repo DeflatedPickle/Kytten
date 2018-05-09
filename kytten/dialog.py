@@ -4,11 +4,12 @@
 import pyglet
 from pyglet import gl
 
-from widgets import Widget, Control, Label
-from button import Button
-from frame import Wrapper, Frame
-from layout import GetRelativePoint, ANCHOR_CENTER
-from layout import VerticalLayout, HorizontalLayout
+from .widgets import Widget, Control, Label
+from .button import Button
+from .frame import Wrapper, Frame
+from .layout import GetRelativePoint, ANCHOR_CENTER
+from .layout import VerticalLayout, HorizontalLayout
+
 
 class DialogEventManager(Control):
     def __init__(self):
@@ -80,7 +81,7 @@ class DialogEventManager(Control):
             # If we hit ENTER, and wrapped back to the first focusable,
             # pass the ENTER back so the Dialog can call its on_enter callback
             if symbol != pyglet.window.key.ENTER or \
-               new_focus != focusable[0]:
+                            new_focus != focusable[0]:
                 return pyglet.event.EVENT_HANDLED
 
         elif symbol != pyglet.window.key.ESCAPE:
@@ -188,12 +189,12 @@ class DialogEventManager(Control):
         @param scroll_y Number of clicks vertically mouse was moved
         """
         if self.wheel_target is not None and \
-           self.wheel_target in self.controls:
+                        self.wheel_target in self.controls:
             self.wheel_target.dispatch_event('on_mouse_scroll',
                                              x, y, scroll_x, scroll_y)
             return pyglet.event.EVENT_HANDLED
         elif self.wheel_hint is not None and \
-             self.wheel_hint in self.controls:
+                        self.wheel_hint in self.controls:
             self.wheel_hint.dispatch_event('on_mouse_scroll',
                                            x, y, scroll_x, scroll_y)
             return pyglet.event.EVENT_HANDLED
@@ -291,11 +292,15 @@ class DialogEventManager(Control):
         if self.focus is not None and self.focus not in self.controls:
             self.set_focus(None)
 
+
 kytten_next_dialog_order_id = 0
+
+
 def GetNextDialogOrderId():
     global kytten_next_dialog_order_id
     kytten_next_dialog_order_id += 1
     return kytten_next_dialog_order_id
+
 
 class DialogGroup(pyglet.graphics.OrderedGroup):
     """
@@ -303,6 +308,7 @@ class DialogGroup(pyglet.graphics.OrderedGroup):
     blending enabled, and that our Dialog will be drawn in a particular
     order relative to other Dialogs.
     """
+
     def __init__(self, parent=None):
         """
         Creates a new DialogGroup.  By default we'll be on top.
@@ -350,6 +356,7 @@ class DialogGroup(pyglet.graphics.OrderedGroup):
         """
         gl.glPopAttrib()
 
+
 class Dialog(Wrapper, DialogEventManager):
     """
     Defines a new GUI.  By default it can contain only one element, but that
@@ -359,6 +366,7 @@ class Dialog(Wrapper, DialogEventManager):
     The Dialog is always repositioned in relationship to the window, and
     handles resize events accordingly.
     """
+
     def __init__(self, content=None, window=None, batch=None, group=None,
                  anchor=ANCHOR_CENTER, offset=(0, 0), parent=None,
                  theme=None, movable=True, on_enter=None, on_escape=None):
@@ -519,7 +527,7 @@ class Dialog(Wrapper, DialogEventManager):
         @param modifiers Modifiers to apply to button
         """
         retval = DialogEventManager.on_mouse_press(self, x, y,
-                                             button, modifiers)
+                                                   button, modifiers)
         if self.hit_test(x, y):
             if not self.root_group.is_on_top():
                 self.pop_to_top()
@@ -594,6 +602,7 @@ class Dialog(Wrapper, DialogEventManager):
             self.window = None
         self.batch._draw_list_dirty = True  # forces resorting groups
 
+
 class PopupMessage(Dialog):
     """A simple fire-and-forget dialog."""
 
@@ -609,9 +618,10 @@ class PopupMessage(Dialog):
                 Label(text),
                 Button("Ok", on_click=on_ok),
             ])),
-            window=window, batch=batch, group=group,
-            theme=theme, movable=True,
-            on_enter=on_ok, on_escape=on_ok)
+                               window=window, batch=batch, group=group,
+                               theme=theme, movable=True,
+                               on_enter=on_ok, on_escape=on_ok)
+
 
 class PopupConfirm(Dialog):
     """An ok/cancel-style dialog.  Escape defaults to cancel."""
@@ -638,6 +648,6 @@ class PopupConfirm(Dialog):
                     Button(cancel, on_click=on_cancel_click)
                 ]),
             ])),
-            window=window, batch=batch, group=group,
-            theme=theme, movable=True,
-            on_enter=on_ok_click, on_escape=on_cancel_click)
+                               window=window, batch=batch, group=group,
+                               theme=theme, movable=True,
+                               on_enter=on_ok_click, on_escape=on_cancel_click)

@@ -9,11 +9,13 @@ from frame import Wrapper
 from scrollbar import HScrollbar, VScrollbar
 from widgets import Widget
 
+
 class ScrollableGroup(pyglet.graphics.Group):
     """
     We restrict what's shown within a Scrollable by performing a scissor
     test.
     """
+
     def __init__(self, x, y, width, height, parent=None):
         """Create a new ScrollableGroup
 
@@ -46,12 +48,14 @@ class ScrollableGroup(pyglet.graphics.Group):
             gl.glDisable(gl.GL_SCISSOR_TEST)
         gl.glPopAttrib()
 
+
 class Scrollable(Wrapper):
     """
     Wraps a layout or widget and limits it to a maximum, or fixed, size.
     If the layout exceeds the viewable limits then it is truncated and
     scrollbars will be displayed so the user can pan around.
     """
+
     def __init__(self, content=None, width=None, height=None,
                  is_fixed_size=False, always_show_scrollbars=False):
         """
@@ -143,8 +147,8 @@ class Scrollable(Wrapper):
         offset_y = 0
         if self.vscrollbar:
             offset_y = self.content.height - self.content_height - \
-                     self.vscrollbar.get(self.content_height,
-                                         self.content.height)
+                       self.vscrollbar.get(self.content_height,
+                                           self.content.height)
         control_left = control.x - self.content_x - offset_x
         control_right = control_left + control.width
         control_bottom = control.y - self.content_y + offset_y
@@ -268,7 +272,7 @@ class Scrollable(Wrapper):
         self.vscrollbar_width = \
             dialog.theme['vscrollbar']['up']['image'].width
 
-        if self.root_group is None: # do we need to re-clone dialog groups?
+        if self.root_group is None:  # do we need to re-clone dialog groups?
             self.theme = dialog.theme
             self.batch = dialog.batch
             self.root_group = ScrollableGroup(0, 0, self.width, self.height,
@@ -286,7 +290,7 @@ class Scrollable(Wrapper):
         Wrapper.size(self, self)  # all children are to use our groups
 
         if self.always_show_scrollbars or \
-           (self.max_width and self.width > self.max_width):
+                (self.max_width and self.width > self.max_width):
             if self.hscrollbar is None:
                 self.hscrollbar = HScrollbar(self.max_width)
         else:
@@ -295,7 +299,7 @@ class Scrollable(Wrapper):
                 self.hscrollbar = None
 
         if self.always_show_scrollbars or \
-           (self.max_height and self.height > self.max_height):
+                (self.max_height and self.height > self.max_height):
             if self.vscrollbar is None:
                 self.vscrollbar = VScrollbar(self.max_height)
         else:

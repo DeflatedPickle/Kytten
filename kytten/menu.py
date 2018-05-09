@@ -13,12 +13,14 @@ from layout import VALIGN_TOP, VALIGN_CENTER, VALIGN_BOTTOM
 from override import KyttenLabel
 from scrollable import Scrollable
 
+
 class MenuOption(Control):
     """
     MenuOption is a choice within a menu.  When selected, it inverts
     (inverted color against text-color background) to indicate that it
     has been chosen.
     """
+
     def __init__(self, text="", anchor=ANCHOR_CENTER, menu=None,
                  disabled=False):
         Control.__init__(self, disabled=disabled)
@@ -102,11 +104,11 @@ class MenuOption(Control):
             else:
                 color = dialog.theme[path]['text_color']
             self.label = KyttenLabel(self.text,
-                color=color,
-                font_name=dialog.theme[path]['font'],
-                font_size=dialog.theme[path]['font_size'],
-                batch=dialog.batch,
-                group=dialog.fg_group)
+                                     color=color,
+                                     font_name=dialog.theme[path]['font'],
+                                     font_size=dialog.theme[path]['font_size'],
+                                     batch=dialog.batch,
+                                     group=dialog.fg_group)
             font = self.label.document.get_font()
             self.width = self.label.content_width
             self.height = font.ascent - font.descent
@@ -140,12 +142,14 @@ class MenuOption(Control):
         self.menu = None
         Control.teardown(self)
 
+
 class Menu(VerticalLayout):
     """
     Menu is a VerticalLayout of MenuOptions.  Moving the mouse across
     MenuOptions highlights them; clicking one selects it and causes Menu
     to send an on_click event.
     """
+
     def __init__(self, options=[], align=HALIGN_CENTER, padding=4,
                  on_select=None):
         self.align = align
@@ -200,6 +204,7 @@ class Menu(VerticalLayout):
     def teardown(self):
         self.on_select = None
         VerticalLayout.teardown(self)
+
 
 class Dropdown(Control):
     def __init__(self, options=[], selected=None, id=None,
@@ -328,10 +333,10 @@ class Dropdown(Control):
                 dialog.batch, dialog.bg_group)
         if self.label is None:
             self.label = KyttenLabel(self.selected,
-                font_name=dialog.theme['dropdown']['font'],
-                font_size=dialog.theme['dropdown']['font_size'],
-                color=dialog.theme['dropdown']['text_color'],
-                batch=dialog.batch, group=dialog.fg_group)
+                                     font_name=dialog.theme['dropdown']['font'],
+                                     font_size=dialog.theme['dropdown']['font_size'],
+                                     color=dialog.theme['dropdown']['text_color'],
+                                     batch=dialog.batch, group=dialog.fg_group)
         font = self.label.document.get_font()
         height = font.ascent - font.descent
         self.width, self.height = self.field.get_needed_size(

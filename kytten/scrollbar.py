@@ -2,7 +2,8 @@
 # Copyrighted (C) 2009 by Conrad "Lynx" Wong
 
 import pyglet
-from widgets import Control
+from .widgets import Control
+
 
 class HScrollbar(Control):
     """
@@ -116,7 +117,7 @@ class HScrollbar(Control):
         _, _, space_width, space_height = self._get_space_region()
         _, _, bar_width, bar_height = self._get_bar_region()
         self.pos = min(max(self.pos + float(dx) / space_width, 0.0),
-                       1.0 - float(bar_width)/space_width)
+                       1.0 - float(bar_width) / space_width)
 
     def ensure_visible(self, left, right, max_width):
         """
@@ -200,7 +201,7 @@ class HScrollbar(Control):
         """
         space_x, space_y, space_width, space_height = self._get_space_region()
         if x >= space_x and x < space_x + space_width and \
-           y >= space_y and y < space_y + space_height:
+                        y >= space_y and y < space_y + space_height:
             self.set_bar_pos(x, y)
             self.is_dragging = True
             self.delete()
@@ -208,14 +209,14 @@ class HScrollbar(Control):
         else:
             left_x, left_y, left_width, left_height = self._get_left_region()
             if x >= left_x and x < left_x + left_width and \
-               y >= left_y and y < left_y + left_height:
+                            y >= left_y and y < left_y + left_height:
                 self.is_scrolling = True
                 self.scroll_delta = -1
             else:
                 right_x, right_y, right_width, right_height = \
-                       self._get_right_region()
+                    self._get_right_region()
                 if x >= right_x and x < right_x + right_width and \
-                   y >= right_y and y < right_y + right_height:
+                                y >= right_y and y < right_y + right_height:
                     self.is_scrolling = True
                     self.scroll_delta = 1
 
@@ -323,6 +324,7 @@ class HScrollbar(Control):
                 dialog.theme[path]['gui_color'],
                 dialog.batch, dialog.fg_group)
 
+
 class VScrollbar(HScrollbar):
     """
     A vertical scrollbar.  Position is measured from 0.0 to 1.0, and bar size
@@ -396,7 +398,7 @@ class VScrollbar(HScrollbar):
         _, _, space_width, space_height = self._get_space_region()
         _, _, bar_width, bar_height = self._get_bar_region()
         self.pos = min(max(self.pos - float(dy) / space_height, 0.0),
-                       1.0 - float(bar_height)/space_height)
+                       1.0 - float(bar_height) / space_height)
 
     def ensure_visible(self, top, bottom, max_height):
         """
@@ -470,4 +472,3 @@ class VScrollbar(HScrollbar):
             self.pos = float(min(max_bar_y, top - y)) / space_height
         if self.bar is not None:
             self.bar.update(*self._get_bar_region())
-

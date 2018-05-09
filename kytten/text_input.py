@@ -5,8 +5,10 @@ import pyglet
 from widgets import Control
 from override import KyttenInputLabel
 
+
 class Input(Control):
     """A text input field."""
+
     def __init__(self, id=None, text="", length=20, max_length=None, padding=0,
                  on_input=None, disabled=False):
         Control.__init__(self, id=id, disabled=disabled)
@@ -205,7 +207,7 @@ class Input(Control):
             if self.label is None:
                 self.label = KyttenInputLabel(self.document.text,
                                               multiline=False,
-                                              width=self.width-self.padding*2,
+                                              width=self.width - self.padding * 2,
                                               color=color,
                                               batch=dialog.batch,
                                               group=dialog.fg_group)

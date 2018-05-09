@@ -6,6 +6,7 @@ import pyglet
 KYTTEN_LAYOUT_GROUPS = {}
 KYTTEN_LAYOUT_GROUP_REFCOUNTS = {}
 
+
 def GetKyttenLayoutGroups(group):
     if not KYTTEN_LAYOUT_GROUPS.has_key(group):
         top_group = pyglet.text.layout.TextLayoutGroup(group)
@@ -23,18 +24,20 @@ def GetKyttenLayoutGroups(group):
     KYTTEN_LAYOUT_GROUP_REFCOUNTS[group] += 1
     return KYTTEN_LAYOUT_GROUPS[group]
 
+
 def ReleaseKyttenLayoutGroups(group):
     KYTTEN_LAYOUT_GROUP_REFCOUNTS[group] -= 1
     if not KYTTEN_LAYOUT_GROUP_REFCOUNTS[group]:
         del KYTTEN_LAYOUT_GROUP_REFCOUNTS[group]
         del KYTTEN_LAYOUT_GROUPS[group]
 
+
 class KyttenLabel(pyglet.text.Label):
     def _init_groups(self, group):
         if not group:
-            return # use the default groups
+            return  # use the default groups
         self.top_group, self.background_group, self.foreground_group, \
-            self.foreground_decoration_group = GetKyttenLayoutGroups(group)
+        self.foreground_decoration_group = GetKyttenLayoutGroups(group)
 
     def teardown(self):
         pyglet.text.Label.teardown(self)
@@ -43,6 +46,7 @@ class KyttenLabel(pyglet.text.Label):
             ReleaseKyttenLayoutGroups(group)
             self.top_group = self.background_self = self.foreground_group \
                 = self.foreground_decoration_group = None
+
 
 class KyttenInputLabel(KyttenLabel):
     def _get_left(self):
@@ -74,10 +78,10 @@ class KyttenInputLabel(KyttenLabel):
                 remove_quads = 0
                 has_quads = False
                 for n in xrange(0, num_quads):
-                    x1, y1, x2, y2, x3, y3, x4, y4 = vlist.vertices[n*8:n*8+8]
+                    x1, y1, x2, y2, x3, y3, x4, y4 = vlist.vertices[n * 8:n * 8 + 8]
                     tx1, ty1, tz1, tx2, ty2, tz2, \
-                       tx3, ty3, tz3, tx4, ty4, tz4 = \
-                       vlist.tex_coords[n*12:n*12+12]
+                    tx3, ty3, tz3, tx4, ty4, tz4 = \
+                        vlist.tex_coords[n * 12:n * 12 + 12]
                     if x2 >= self._x:
                         has_quads = True
                         m = n - remove_quads  # shift quads left
@@ -86,11 +90,11 @@ class KyttenInputLabel(KyttenLabel):
                                       (float(x2) - float(x1))
                             x1 = x4 = max(self._x, x1)
                             tx1 = tx4 = (tx2 - tx1) * percent + tx1
-                        vlist.vertices[m*8:m*8+8] = \
+                        vlist.vertices[m * 8:m * 8 + 8] = \
                             [x1, y1, x2, y2, x3, y3, x4, y4]
-                        vlist.tex_coords[m*12:m*12+12] = \
-                             [tx1, ty1, tz1, tx2, ty2, tz2,
-                              tx3, ty3, tz3, tx4, ty4, tz4]
+                        vlist.tex_coords[m * 12:m * 12 + 12] = \
+                            [tx1, ty1, tz1, tx2, ty2, tz2,
+                             tx3, ty3, tz3, tx4, ty4, tz4]
                     else:
                         # We'll delete quads entirely not visible
                         remove_quads = remove_quads + 1
@@ -101,4 +105,3 @@ class KyttenInputLabel(KyttenLabel):
         for vlist in remove:
             vlist.delete()
             self._vertex_lists.remove(vlist)
-

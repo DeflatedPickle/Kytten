@@ -3,14 +3,16 @@
 
 import pyglet
 
-from widgets import Control
-from scrollbar import VScrollbar
+from .widgets import Control
+from .scrollbar import VScrollbar
+
 
 class Document(Control):
     """
     Allows you to embed a document within the GUI, which includes a
     vertical scrollbar as needed.
     """
+
     def __init__(self, document, width=1000, height=5000,
                  is_fixed_size=False, always_show_scrollbar=False):
         """
@@ -110,13 +112,13 @@ class Document(Control):
                 self.max_height,
                 multiline=True, batch=dialog.batch, group=dialog.fg_group)
             if self.is_fixed_size or (self.max_height and
-                self.content.content_height > self.max_height):
+                                              self.content.content_height > self.max_height):
                 self.height = self.max_height
             else:
                 self.height = self.content.content_height
             self.content.height = self.height
         if self.always_show_scrollbar or \
-           (self.max_height and self.content.content_height > self.max_height):
+                (self.max_height and self.content.content_height > self.max_height):
             if self.scrollbar is None:
                 self.scrollbar = VScrollbar(self.max_height)
             self.scrollbar.size(dialog)

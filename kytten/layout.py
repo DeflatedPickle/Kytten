@@ -9,6 +9,8 @@
 # FreeLayout: an open area within which Widgets may be positioned freely,
 #             relative to one of its anchor points.
 
+from functools import reduce
+
 import pyglet
 from pyglet import gl
 

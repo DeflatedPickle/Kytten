@@ -4,10 +4,10 @@
 import pyglet
 from pyglet import gl
 
-from dialog import DialogEventManager
-from frame import Wrapper
-from scrollbar import HScrollbar, VScrollbar
-from widgets import Widget
+from .dialog import DialogEventManager
+from .frame import Wrapper
+from .scrollbar import HScrollbar, VScrollbar
+from .widgets import Widget
 
 
 class ScrollableGroup(pyglet.graphics.Group):

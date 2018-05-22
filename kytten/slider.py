@@ -2,7 +2,7 @@
 # Copyrighted (C) 2009 by Conrad "Lynx" Wong
 
 import pyglet
-from widgets import Control
+from .widgets import Control
 
 
 class Slider(Control):

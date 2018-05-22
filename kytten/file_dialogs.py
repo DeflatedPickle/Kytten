@@ -337,3 +337,7 @@ class DirectorySelectDialog(FileLoadDialog):
                 return cmp(x, y)
 
         self.files.sort(dir_sort)
+
+
+def cmp(x, y):
+    return (x > y) - (x < y)

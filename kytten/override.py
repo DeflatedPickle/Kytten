@@ -77,7 +77,7 @@ class KyttenInputLabel(KyttenLabel):
                 num_quads = len(vlist.vertices) / 8
                 remove_quads = 0
                 has_quads = False
-                for n in xrange(0, num_quads):
+                for n in range(0, num_quads):
                     x1, y1, x2, y2, x3, y3, x4, y4 = vlist.vertices[n * 8:n * 8 + 8]
                     tx1, ty1, tz1, tx2, ty2, tz2, \
                     tx3, ty3, tz3, tx4, ty4, tz4 = \

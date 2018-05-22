@@ -3,7 +3,7 @@
 #
 # Source: http://code.activestate.com/recipes/364469/
 
-import compiler
+from ast import parse
 
 
 class Unsafe_Source_Error(Exception):
@@ -62,7 +62,7 @@ class SafeEvalWithErrors(SafeEval):
 def safe_eval(source, fail_on_error=True):
     walker = fail_on_error and SafeEvalWithErrors() or SafeEval()
     try:
-        ast = compiler.parse(source, "eval")
+        ast = parse(source, "eval")
     except SyntaxError as err:
         raise Unsafe_Source_Error(err, source)
     try:

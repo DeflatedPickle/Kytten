@@ -8,7 +8,7 @@ KYTTEN_LAYOUT_GROUP_REFCOUNTS = {}
 
 
 def GetKyttenLayoutGroups(group):
-    if not KYTTEN_LAYOUT_GROUPS.has_key(group):
+    if not KYTTEN_LAYOUT_GROUPS.get(group):
         top_group = pyglet.text.layout.TextLayoutGroup(group)
         background_group = pyglet.graphics.OrderedGroup(0, top_group)
         foreground_group = \

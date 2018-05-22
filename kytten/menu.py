@@ -3,15 +3,15 @@
 
 import pyglet
 
-from widgets import Widget, Control
-from dialog import Dialog
-from frame import Frame
-from layout import GetRelativePoint, VerticalLayout
-from layout import ANCHOR_CENTER, ANCHOR_TOP_LEFT, ANCHOR_BOTTOM_LEFT
-from layout import HALIGN_CENTER
-from layout import VALIGN_TOP, VALIGN_CENTER, VALIGN_BOTTOM
-from override import KyttenLabel
-from scrollable import Scrollable
+from .widgets import Widget, Control
+from .dialog import Dialog
+from .frame import Frame
+from .layout import GetRelativePoint, VerticalLayout
+from .layout import ANCHOR_CENTER, ANCHOR_TOP_LEFT, ANCHOR_BOTTOM_LEFT
+from .layout import HALIGN_CENTER
+from .layout import VALIGN_TOP, VALIGN_CENTER, VALIGN_BOTTOM
+from .override import KyttenLabel
+from .scrollable import Scrollable
 
 
 class MenuOption(Control):

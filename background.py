@@ -87,6 +87,6 @@ class Background:
         self.group = pyglet.graphics.TextureGroup(
             self.texture, self.parent_group)
         self.vertex_list = self.batch.add(4, gl.GL_QUADS, self.group,
-                                          ('v2i', (x1, y1, x2, y1, x2, y2, x1, y2)),
+                                          ('v2f', (x1, y1, x2, y1, x2, y2, x1, y2)),
                                           ('c3B', (255, 255, 255) * 4),
                                           ('t3f', self.texture.tex_coords))

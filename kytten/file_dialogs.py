@@ -117,7 +117,7 @@ class FileLoadDialog(Dialog):
             else:
                 return cmp(x, y)
 
-        self.files.sort(dir_sort)
+        # self.files.sort(dir_sort)
 
     def get(self):
         return self.selected_file
@@ -336,7 +336,7 @@ class DirectorySelectDialog(FileLoadDialog):
             else:
                 return cmp(x, y)
 
-        self.files.sort(dir_sort)
+        # self.files.sort(dir_sort)
 
 
 def cmp(x, y):

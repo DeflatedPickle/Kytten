@@ -68,7 +68,7 @@ def create_form_dialog():
 
     def on_enter(dialog):
         print("Form submitted!")
-        for key, value in dialog.get_values().iteritems():
+        for key, value in dialog.get_values().items():
             print("  %s=%s" % (key, value))
         on_escape(dialog)
 

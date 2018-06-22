@@ -79,51 +79,51 @@ def create_form_dialog():
         print("Form canceled.")
         on_escape(dialog)
 
-    dialog = kytten.Dialog(
-        kytten.Frame(
-            kytten.Scrollable(
-                kytten.VerticalLayout([
-                    kytten.SectionHeader("Personnel Data",
-                                         align=kytten.HALIGN_LEFT),
-                    kytten.Document("Try tabbing through fields, "
-                                    "if offscreen they'll be moved "
-                                    "automatically",
-                                    width=500),
-                    kytten.GridLayout([
-                        [kytten.Label("Name"), kytten.Input("name", "Lynx",
-                                                            max_length=20)],
-                        [kytten.Label("Job"), kytten.Input("job", "Cat",
-                                                           max_length=80)],
-                        [kytten.Label("Hobby"),
-                         kytten.Input("hobby", "Programming")],
-                        [kytten.Label("Class"),
-                         kytten.Input("class", "Druid")],
-                        [kytten.Label("Disabled"),
-                         kytten.Input("disabled", "Disabled input",
-                                      disabled=True)],
-                        [kytten.Label("Sign"),
-                         kytten.Input("sign", "Free to good home")],
-                        [kytten.Label("Blood Type"),
-                         kytten.Input("bloodtype", "Red")],
-                        [kytten.Label("Favored Weapon"),
-                         kytten.Input("weapon", "Claws")],
-                    ]),
-                    kytten.Checkbox("Full-Time", id="fulltime"),
-                    kytten.Checkbox("Married", id="married", disabled=True),
-                    kytten.SectionHeader("Actions",
-                                         align=kytten.HALIGN_LEFT),
-                    kytten.HorizontalLayout([
-                        kytten.Button("Submit", on_click=on_submit),
-                        kytten.Button("Disabled", disabled=True),
-                        None,
-                        kytten.Button("Cancel", on_click=on_cancel),
-                    ]),
-                ], align=kytten.HALIGN_LEFT),
-                height=200, width=360)
-        ),
-        window=window, batch=batch, group=fg_group,
-        anchor=kytten.ANCHOR_CENTER,
-        theme=theme2, on_enter=on_enter, on_escape=on_escape)
+    # dialog = kytten.Dialog(
+    #     kytten.Frame(
+    #         kytten.Scrollable(
+    #             kytten.VerticalLayout([
+    #                 kytten.SectionHeader("Personnel Data",
+    #                                      align=kytten.HALIGN_LEFT),
+    #                 kytten.Document("Try tabbing through fields, "
+    #                                 "if offscreen they'll be moved "
+    #                                 "automatically",
+    #                                 width=500),
+    #                 kytten.GridLayout([
+    #                     [kytten.Label("Name"), kytten.Input("name", "Lynx",
+    #                                                         max_length=20)],
+    #                     [kytten.Label("Job"), kytten.Input("job", "Cat",
+    #                                                        max_length=80)],
+    #                     [kytten.Label("Hobby"),
+    #                      kytten.Input("hobby", "Programming")],
+    #                     [kytten.Label("Class"),
+    #                      kytten.Input("class", "Druid")],
+    #                     [kytten.Label("Disabled"),
+    #                      kytten.Input("disabled", "Disabled input",
+    #                                   disabled=True)],
+    #                     [kytten.Label("Sign"),
+    #                      kytten.Input("sign", "Free to good home")],
+    #                     [kytten.Label("Blood Type"),
+    #                      kytten.Input("bloodtype", "Red")],
+    #                     [kytten.Label("Favored Weapon"),
+    #                      kytten.Input("weapon", "Claws")],
+    #                 ]),
+    #                 kytten.Checkbox("Full-Time", id="fulltime"),
+    #                 kytten.Checkbox("Married", id="married", disabled=True),
+    #                 kytten.SectionHeader("Actions",
+    #                                      align=kytten.HALIGN_LEFT),
+    #                 kytten.HorizontalLayout([
+    #                     kytten.Button("Submit", on_click=on_submit),
+    #                     kytten.Button("Disabled", disabled=True),
+    #                     None,
+    #                     kytten.Button("Cancel", on_click=on_cancel),
+    #                 ]),
+    #             ], align=kytten.HALIGN_LEFT),
+    #             height=200, width=360)
+    #     ),
+    #     window=window, batch=batch, group=fg_group,
+    #     anchor=kytten.ANCHOR_CENTER,
+    #     theme=theme2, on_enter=on_enter, on_escape=on_escape)
 
 
 def create_scrollable_dialog():

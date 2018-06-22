@@ -300,7 +300,7 @@ class HScrollbar(Control):
             else:
                 path = self.IMAGE_LEFTMAX
             self.left = dialog.theme[path]['image'].generate(
-                dialog.theme[path]['gui_color'],
+                dialog.theme[path]['gui_color_light'],
                 dialog.batch, dialog.fg_group)
 
             # Left button is our basis for minimum dimension
@@ -321,7 +321,7 @@ class HScrollbar(Control):
             else:
                 path = self.IMAGE_RIGHTMAX
             self.right = dialog.theme[path]['image'].generate(
-                dialog.theme[path]['gui_color'],
+                dialog.theme[path]['gui_color_light'],
                 dialog.batch, dialog.fg_group)
 
 

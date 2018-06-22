@@ -33,6 +33,7 @@ DEFAULT_THEME_SETTINGS = {
     "font_size_small": 10,
     "text_color": [255, 255, 255, 255],
     "gui_color": [255, 255, 255, 255],
+    "gui_color_light": [255, 255, 255, 255],
     "highlight_color": [255, 255, 255, 64],
     "disabled_color": [160, 160, 160, 255],
 }

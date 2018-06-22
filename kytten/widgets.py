@@ -337,7 +337,7 @@ class Label(Widget):
             self.label = KyttenLabel(
                 self.text, bold=self.bold, italic=self.italic,
                 color=self.color or
-                      dialog.theme[self.path + ['gui_color']],
+                      dialog.theme[self.path + ['text_color']],
                 font_name=self.font_name or
                           dialog.theme[self.path + ['font']],
                 font_size=self.font_size or

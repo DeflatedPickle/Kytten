@@ -139,7 +139,7 @@ class Checkbox(Control):
             self.label = KyttenLabel(self.text,
                                      font_name=dialog.theme[path]['font'],
                                      font_size=dialog.theme[path]['font_size'],
-                                     color=color,
+                                     color=dialog.theme[path]['text_color'],
                                      batch=dialog.batch, group=dialog.fg_group)
 
         # Treat the height of the label as ascent + descent

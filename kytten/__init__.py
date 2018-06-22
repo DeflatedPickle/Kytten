@@ -58,3 +58,5 @@ from .slider import Slider
 from .text_input import Input
 from .theme import Theme
 from .widgets import Widget, Spacer, Label
+
+from .window import Window

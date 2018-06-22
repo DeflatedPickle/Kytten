@@ -332,6 +332,15 @@ if __name__ == '__main__':
         anchor=kytten.ANCHOR_TOP_LEFT,
         theme=kytten.themes.felyne_dark)
 
+    window2 = kytten.Window("Window",
+                          kytten.VerticalLayout([
+                              kytten.Label("I'm a window, the first widget to be added to felyne."),
+                              kytten.Label("I have a close button, wow!")
+                          ]),
+        window=window, batch=batch, group=fg_group,
+        anchor=kytten.ANCHOR_TOP_LEFT,
+        theme=kytten.themes.felyne_dark)
+
     # Change this flag to run with profiling and dump top 20 cumulative times
     if True:
         pyglet.app.run()

@@ -29,3 +29,12 @@ felyne_dark = kytten.Theme(felyne_light, override={
     "highlight_color": [100, 100, 102, 64],
     "font_size": 12
 })
+
+simplui = kytten.Theme("kytten/themes/simplui", override={
+    "font": "Lucida Grande",
+    "font_size": 9,
+    "text_color": [255, 255, 255, 255],
+    "gui_color": [120, 120, 120, 255],
+    "gui_color_light": [255, 255, 255, 255],
+    "highlight_color": [100, 100, 102, 64]
+})

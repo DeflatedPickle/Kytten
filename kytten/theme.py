@@ -386,11 +386,13 @@ class Theme(ScopedDict):
             return
 
         if isinstance(arg, dict):
+            print(1)
             self.loader = pyglet.resource.Loader(os.getcwd())
             input_ = arg
         else:
-            if os.path.isfile(arg) or os.path.isdir(arg):
-                self.loader = pyglet.resource.Loader(path=arg)
+            new_arg = os.path.join(__file__.split("kytten")[0], arg)
+            if os.path.isfile(new_arg) or os.path.isdir(new_arg):
+                self.loader = pyglet.resource.Loader(path=new_arg)
                 try:
                     theme_file = self.loader.file(name)
                     input_ = json_load(theme_file.read())

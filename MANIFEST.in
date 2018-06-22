@@ -1,0 +1,8 @@
+include kytten/themes/classic/*.png
+include kytten/themes/classic/theme.json
+
+include kytten/themes/felyne/*.png
+include kytten/themes/felyne/theme.json
+
+include kytten/themes/simplui/*.png
+include kytten/themes/simplui/theme.json

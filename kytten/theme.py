@@ -394,7 +394,7 @@ class Theme(ScopedDict):
             if os.path.isfile(new_arg) or os.path.isdir(new_arg):
                 self.loader = pyglet.resource.Loader(path=new_arg)
                 try:
-                    theme_file = self.loader.file(name)
+                    theme_file = self.loader.file(name, "r")
                     input_ = json_load(theme_file.read())
                     theme_file.close()
                 except pyglet.resource.ResourceNotFoundException:

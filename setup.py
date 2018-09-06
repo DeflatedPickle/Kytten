@@ -3,10 +3,10 @@
 GUI Framework for Pyglet
 """
 
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(name="felyne",
-      version="7.0.3",
+      version="7.0.4",
       author="Conrad 'Lynx' Wong (originator), Raymond Chandler III (fork), DeflatedPickle (fork)",
       description="A Python 3 fork of Kytten, a widget toolkit for Pyglet.",
       url="https://github.com/DeflatedPickle/felyne",
@@ -28,4 +28,5 @@ setup(name="felyne",
       ],
       packages=["kytten", "kytten/themes"],
       install_requires=['pyglet>=1.1.4'],
-      zip_safe=False)
+      zip_safe=False,
+      include_package_data=True)
